@@ -6,10 +6,10 @@ function SavedBook(props){
         <div className="pt-3 px-3">
             <div className="row ">
                 <div className="col-5">
-                    <p>{props.title}</p>
-                    <p>Written By: <span>{props.author}</span></p>
+                    <p><strong>{props.title}</strong></p>
+                    <p>Written By: <span style={{color: "cadetblue"}}>{props.author}</span></p>
                 </div>
-                <div className="col-4">
+                <div className="col-7">
                     <a href={props.bookLink} target="_blank" rel="noopener noreferrer" className="btn btn-info mr-2" style={{backgroundColor:"cadetblue", borderColor:"cadetblue", cursor:"pointer"}}>View</a>
                     <a className="btn btn-secondary" style={{backgroundColor:"#ff704d", borderColor:"#ff704d", color:"white", cursor:"pointer"}} onClick={props.handleDelete}
                         data-bookid={props.bookId}
@@ -19,11 +19,11 @@ function SavedBook(props){
 
             <div className="row">
 
-                <div className="col-3">
+                <div className="col-md-3 col-sm-12">
                     <img src={props.imageLink} alt="bookimage" ></img>
 
                 </div>
-                <div className="col-9">
+                <div className="col-md-9 col-sm-12">
                     <p>{props.description}</p>
                     
                     
