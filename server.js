@@ -53,7 +53,9 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactbookslist");
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactbookslist");
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://bootcamp-user:password123@ds145178.mlab.com:45178/heroku_rw96t5fz");
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
