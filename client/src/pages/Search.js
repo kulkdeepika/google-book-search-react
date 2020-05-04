@@ -3,7 +3,6 @@ import Searchbar from "../components/Searchbar";
 import Result from "../components/Result";
 import API from "../utils/API";
 import "../style.css";
-import Toast from "../components/Toast";
 const SearchStyle = {
     fontFamily: "Josefin Sans, sans-serif"
 }
@@ -31,11 +30,22 @@ class Search extends Component{
         API.searchBook(this.state.search)
             .then(data => {
                 console.log(data.data);
-                this.setState({
-                    results: data.data.items,
-                },()=>{
-                    console.log(this.state.results);
-                })
+                console.log(data.data.hasOwnProperty("items"));
+                //console.log(data.data.items.length);
+                if(data.data.hasOwnProperty("items") && data.data.items.length !== 0){
+                    this.setState({
+                        results: data.data.items
+                    },()=>{
+                        console.log(this.state.results);
+                    })
+                }
+                else{
+                    this.setState({
+                        results: []
+                    },()=>{
+                        console.log(this.state.results);
+                    })
+                }
             })
     }
 
@@ -78,18 +88,19 @@ class Search extends Component{
                 ></Searchbar>
 
                 {
+                    this.state.results.length ? 
                     this.state.results.map((book) => (
                         <Result
-                            title={book.volumeInfo.title}
-                            author={book.volumeInfo.authors[0]}
-                            imageLink={book.volumeInfo.imageLinks.smallThumbnail}
-                            description={book.volumeInfo.description}
-                            bookLink={book.accessInfo.webReaderLink}
+                            title={ book.volumeInfo.hasOwnProperty("title") ? book.volumeInfo.title : ""}
+                            author={ (book.volumeInfo.hasOwnProperty("authors") &&  book.volumeInfo.authors.length !== 0) ?  book.volumeInfo.authors[0] : ""}
+                            imageLink={ (book.volumeInfo.hasOwnProperty("imageLinks") && book.volumeInfo.imageLinks.hasOwnProperty("smallThumbnail")) ? book.volumeInfo.imageLinks.smallThumbnail : ""}
+                            description={book.volumeInfo.hasOwnProperty("description") ? book.volumeInfo.description : ""}
+                            bookLink={ book.accessInfo.hasOwnProperty("webReaderLink") ? book.accessInfo.webReaderLink : ""}
                             bookId={book.id}
                             key={book.id}
                             handleSave={this.handleSave}
                         ></Result>
-                    ))
+                    )) : <h3>No results to display</h3>
                 }
 
             </div>
@@ -98,3 +109,5 @@ class Search extends Component{
 }
 
 export default Search;
+
+//dfsffaff
