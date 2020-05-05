@@ -46,6 +46,7 @@ app.delete("/api/books/:id", (req, res) => {
       throw err;
     }
     console.log("successfully deleted");
+    res.sendStatus(200);
   })
 })
 
