@@ -34,7 +34,7 @@ app.post("/api/books", (req, res) => {
   console.log(req.body);
   db.Book
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {res.json(dbModel)})
       .catch(err => res.status(422).json(err));
 });
 

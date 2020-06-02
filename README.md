@@ -28,5 +28,7 @@ Clicking the 'delete' button will delete the book from the saved list.
 This app is hosted on Heroku @:
 [google-books-search-using-react](https://react-googlebooksearchapp.herokuapp.com/)
 
+![App ScreenShot](./ScreenShot.png)
+
 # Future Enhancements
 Would like to implement authentication and enable users to create an account, so lists can be user specific.
